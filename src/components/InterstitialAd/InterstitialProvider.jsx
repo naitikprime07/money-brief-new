@@ -7,6 +7,9 @@ import './InterstitialAd.css';
 
 let lastShownAt = 0;
 
+// Article clicks counted since the app loaded, for the every-other-click gating.
+let articleClicks = 0;
+
 /** The div inside our custom overlay that the preloaded creative renders into. */
 const AD_DIV_ID = 'ff-interstitial-ad';
 
@@ -23,6 +26,9 @@ const REFILL_RETRY_MS = 30000;
  * creative is already rendered, so there is no network wait); if no ad is
  * preloaded the reader navigates immediately. Closing the overlay continues
  * the pending navigation and refreshes the slot for the next click.
+ *
+ * With `showOnEvenClicks`, only every 2nd article click (2, 4, 6…) shows the
+ * ad; odd clicks open the article directly without consuming the preload.
  */
 export default function InterstitialProvider({ children }) {
   const navigate = useNavigate();
@@ -110,14 +116,17 @@ export default function InterstitialProvider({ children }) {
   const openWithInterstitial = useCallback(
     (to) => {
       if (pendingRef.current) return; // navigation already in flight
+      articleClicks += 1;
 
       const now = Date.now();
       const capped = config.frequencyCapMs > 0 && now - lastShownAt < config.frequencyCapMs;
+      const offTurn = config.showOnEvenClicks && articleClicks % 2 !== 0;
       const unavailable =
         !AD_CONFIG.enabled || !config.enabled || !config.adUnitPath || getGptLoadState() === 'failed';
 
-      // No preloaded ad right now → go straight to the article, zero waiting.
-      if (capped || unavailable || !readyRef.current || !gateRef.current) {
+      // No preloaded ad right now (or this click is a skipped turn) → go
+      // straight to the article, zero waiting.
+      if (capped || offTurn || unavailable || !readyRef.current || !gateRef.current) {
         navigate(to);
         return;
       }
@@ -127,7 +136,7 @@ export default function InterstitialProvider({ children }) {
       pendingRef.current = to;
       setOpen(true);
     },
-    [config.enabled, config.frequencyCapMs, config.adUnitPath, navigate],
+    [config.enabled, config.frequencyCapMs, config.showOnEvenClicks, config.adUnitPath, navigate],
   );
 
   // Freeze the page while the veil is open, and let Escape close the ad.

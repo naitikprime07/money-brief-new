@@ -72,5 +72,7 @@ export const AD_CONFIG = {
     sizes: [[300, 250], [300, 357], [320, 480]],
     /** Minimum gap between interstitials. 0 = show on every article click (useful while testing). */
     frequencyCapMs: 0,
+    /** Show only on every 2nd article click (2, 4, 6…); the 1st click opens directly. */
+    showOnEvenClicks: true,
   },
 };

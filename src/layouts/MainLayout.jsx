@@ -6,10 +6,22 @@ import Header from '../components/Header/Header';
 import ScrollToTop from '../components/ScrollToTop/ScrollToTop';
 import StickySideAd from '../components/StickySideAd/StickySideAd';
 
+/** Pages that must stay ad-free: legal/info pages and the 404 screen. */
+const AD_FREE_PREFIXES = ['/about', '/terms', '/privacy'];
+const KNOWN_ROUTES = /^\/(?:blog(?:\/[^/]+)?|category\/[^/]+|tools|about|terms|privacy)?$/;
+
+function isAdFree(pathname) {
+  const path = pathname.replace(/\/+$/, '') || '/';
+  if (AD_FREE_PREFIXES.some((p) => path === p || path.startsWith(`${p}/`))) return true;
+  // Unknown routes render the NotFound page — keep it ad-free as well.
+  return !KNOWN_ROUTES.test(path);
+}
+
 /** Shared page frame: header, top ad, page content, footer. */
 export default function MainLayout() {
   // Persistent layout ads request a fresh creative on every page view.
   const { pathname } = useLocation();
+  const adFree = isAdFree(pathname);
 
   return (
     <>
@@ -17,17 +29,19 @@ export default function MainLayout() {
       <ScrollToTop />
       <Header />
 
-      <div className="ad-band">
-        <Container>
-          <AdSlot placement="top" refreshKey={pathname} />
-        </Container>
-      </div>
+      {!adFree && (
+        <div className="ad-band">
+          <Container>
+            <AdSlot placement="top" refreshKey={pathname} />
+          </Container>
+        </div>
+      )}
 
       <main id="main">
         <Outlet />
       </main>
 
-      <StickySideAd />
+      {!adFree && <StickySideAd />}
 
       <Footer />
     </>
