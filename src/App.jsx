@@ -8,6 +8,7 @@ import Home from './pages/Home';
 import NotFound from './pages/NotFound';
 import Privacy from './pages/Privacy';
 import Terms from './pages/Terms';
+import Tools from './pages/Tools';
 
 export default function App() {
   return (
@@ -19,6 +20,7 @@ export default function App() {
             <Route path="blog" element={<Blog />} />
             <Route path="blog/:slug" element={<BlogDetail />} />
             <Route path="category/:category" element={<Blog />} />
+            <Route path="tools" element={<Tools />} />
             <Route path="about" element={<About />} />
             <Route path="terms" element={<Terms />} />
             <Route path="privacy" element={<Privacy />} />

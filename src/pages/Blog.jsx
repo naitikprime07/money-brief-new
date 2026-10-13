@@ -19,7 +19,7 @@ export default function Blog() {
   const title = category ? category.title : 'All Articles';
   const description = category
     ? category.description
-    : `Every ${SITE.name} guide on personal finance, saving, investing, banking and the economy.`;
+    : `Every ${SITE.name} guide — personal finance explained in plain language, and how the cloud behind modern money works.`;
 
   return (
     <>

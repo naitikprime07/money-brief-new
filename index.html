@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#0b5d47" />
+    <meta name="theme-color" content="#b45309" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://securepubads.g.doubleclick.net" crossorigin />
     <!-- Fonts use the native system stack (iOS SF Pro on Apple devices) — no webfont download. -->
@@ -28,54 +28,54 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        gap: 26px;
-        background: #fbfaf7;
+        gap: 20px;
+        background: linear-gradient(160deg, rgba(180, 83, 9, 0.03) 0%, transparent 40%), #faf6ef;
         transition: opacity 0.4s ease, visibility 0.4s ease;
       }
       #app-splash.is-hidden {
         opacity: 0;
         visibility: hidden;
       }
-      .app-splash__brand {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        animation: app-splash-in 0.5s ease both;
-      }
       .app-splash__mark {
-        width: 52px;
-        height: 52px;
+        width: 68px;
+        height: 68px;
         display: block;
-        filter: drop-shadow(0 3px 8px rgba(11, 93, 71, 0.3));
+        filter: drop-shadow(0 10px 22px rgba(180, 83, 9, 0.28));
+        animation: app-splash-in 0.5s ease both, app-splash-float 2.6s 0.6s ease-in-out infinite;
       }
       .app-splash__name {
         font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', system-ui, sans-serif;
-        font-size: 1.35rem;
+        font-size: 1.5rem;
         font-weight: 700;
         letter-spacing: -0.02em;
-        color: #13202b;
+        color: #201a15;
+        animation: app-splash-in 0.5s 0.12s ease both;
       }
-      .app-splash__bar {
-        position: relative;
-        width: 130px;
-        height: 3px;
-        border-radius: 99px;
-        background: #e4e1d8;
-        overflow: hidden;
+      .app-splash__name span {
+        color: #b45309;
       }
-      .app-splash__bar::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        width: 40%;
-        border-radius: inherit;
-        background: #0b5d47;
-        animation: app-splash-slide 1s ease-in-out infinite;
+      /* Three brand dots replace the old progress bar. */
+      .app-splash__dots {
+        display: inline-flex;
+        gap: 8px;
+        animation: app-splash-in 0.5s 0.24s ease both;
       }
-      @keyframes app-splash-slide {
-        0% { left: -40%; }
-        100% { left: 100%; }
+      .app-splash__dots i {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        animation: app-splash-bounce 1s ease-in-out infinite;
+      }
+      .app-splash__dots i:nth-child(1) { background: #b45309; }
+      .app-splash__dots i:nth-child(2) { background: #065f46; animation-delay: 0.16s; }
+      .app-splash__dots i:nth-child(3) { background: #201a15; animation-delay: 0.32s; }
+      @keyframes app-splash-float {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-7px); }
+      }
+      @keyframes app-splash-bounce {
+        0%, 100% { transform: translateY(0); opacity: 0.55; }
+        50% { transform: translateY(-7px); opacity: 1; }
       }
       @keyframes app-splash-in {
         from { opacity: 0; transform: translateY(8px); }
@@ -83,63 +83,64 @@
       }
       @media (prefers-reduced-motion: reduce) {
         #app-splash { transition-duration: 0.01ms; }
-        .app-splash__brand { animation: none; }
-        .app-splash__bar::after { animation-duration: 2s; }
+        .app-splash__mark,
+        .app-splash__name,
+        .app-splash__dots,
+        .app-splash__dots i { animation: none; opacity: 1; }
       }
       /* Splash follows the saved dark theme too. */
       html[data-theme='dark'] #app-splash {
-        background: #0a1626;
+        background: #181310;
       }
       html[data-theme='dark'] .app-splash__name {
-        color: #e8eef7;
+        color: #faf6ef;
       }
-      html[data-theme='dark'] .app-splash__bar {
-        background: #223753;
+      html[data-theme='dark'] .app-splash__name span {
+        color: #f59e0b;
       }
-      html[data-theme='dark'] .app-splash__bar::after {
-        background: #3f8cff;
-      }
+      html[data-theme='dark'] .app-splash__dots i:nth-child(1) { background: #f59e0b; }
+      html[data-theme='dark'] .app-splash__dots i:nth-child(2) { background: #34d399; }
+      html[data-theme='dark'] .app-splash__dots i:nth-child(3) { background: #faf6ef; }
     </style>
   </head>
   <body>
     <div id="app-splash" aria-hidden="true">
-      <div class="app-splash__brand">
         <svg class="app-splash__mark" viewBox="0 0 512 512" aria-hidden="true">
           <defs>
-            <linearGradient id="ffSplashLogoBg" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0" stop-color="#10C9A0"/>
-              <stop offset="0.55" stop-color="#008F70"/>
-              <stop offset="1" stop-color="#005642"/>
+            <linearGradient id="fvSplashLogoBg" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#134E3A"/>
+              <stop offset="0.55" stop-color="#0B3527"/>
+              <stop offset="1" stop-color="#061E17"/>
             </linearGradient>
-            <linearGradient id="ffSplashLogoMint" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0" stop-color="#B8FF9B"/>
-              <stop offset="1" stop-color="#32D889"/>
+            <radialGradient id="fvSplashLogoGlow" cx="0.32" cy="0.26" r="0.8">
+              <stop offset="0" stop-color="#3BEFA0" stop-opacity="0.32"/>
+              <stop offset="1" stop-color="#3BEFA0" stop-opacity="0"/>
+            </radialGradient>
+            <linearGradient id="fvSplashLogoBar" gradientUnits="userSpaceOnUse" x1="256" y1="392" x2="256" y2="212">
+              <stop offset="0" stop-color="#0A7A54"/>
+              <stop offset="0.5" stop-color="#17BC79"/>
+              <stop offset="1" stop-color="#FBBF24"/>
             </linearGradient>
-            <linearGradient id="ffSplashLogoWhiteMint" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0" stop-color="#ffffff"/>
-              <stop offset="1" stop-color="#A5FFD9"/>
+            <linearGradient id="fvSplashLogoArrow" gradientUnits="userSpaceOnUse" x1="150" y1="268" x2="384" y2="158">
+              <stop offset="0" stop-color="#A7F3D0"/>
+              <stop offset="1" stop-color="#FDE68A"/>
             </linearGradient>
-            <linearGradient id="ffSplashLogoGold" x1="0" y1="0" x2="0.8" y2="1">
-              <stop offset="0" stop-color="#FFF66B"/>
-              <stop offset="1" stop-color="#FFC928"/>
-            </linearGradient>
-            <filter id="ffSplashLogoShadow" x="-20%" y="-20%" width="140%" height="150%">
-              <feDropShadow dx="0" dy="7" stdDeviation="7" flood-color="#003F34" flood-opacity="0.35"/>
+            <filter id="fvSplashLogoShadow" x="-20%" y="-20%" width="140%" height="150%">
+              <feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#04150F" flood-opacity="0.5"/>
             </filter>
           </defs>
-          <rect x="28" y="28" width="456" height="456" rx="76" fill="url(#ffSplashLogoBg)"/>
-          <g filter="url(#ffSplashLogoShadow)">
-            <path d="M153 367V192c0-58 39-97 98-97h111c-15 31-39 47-77 47h-52c-28 0-43 17-43 43v24h108c-13 27-34 42-67 42h-41v116c0 28-15 43-43 43-27 0-43-15-43-43Z" fill="url(#ffSplashLogoMint)"/>
-            <path d="M153 209c0-31 15-52 43-66 15-8 34-11 56-11h110c-15 30-39 46-77 46h-52c-28 0-43 17-43 43v20h-37Z" fill="#53E8A2" opacity="0.92"/>
-            <path d="M153 367V258h37v109c0 28-15 43-43 43-12 0-22-3-29-10 22-2 35-13 35-33Z" fill="url(#ffSplashLogoWhiteMint)"/>
-            <rect x="221" y="321" width="43" height="76" rx="13" fill="url(#ffSplashLogoWhiteMint)"/>
-            <rect x="278" y="286" width="43" height="111" rx="13" fill="url(#ffSplashLogoMint)"/>
-            <rect x="335" y="244" width="43" height="153" rx="13" fill="url(#ffSplashLogoGold)"/>
+          <rect x="28" y="28" width="456" height="456" rx="112" fill="url(#fvSplashLogoBg)"/>
+          <rect x="28" y="28" width="456" height="456" rx="112" fill="url(#fvSplashLogoGlow)"/>
+          <g filter="url(#fvSplashLogoShadow)">
+            <rect x="140" y="320" width="56" height="72" rx="18" fill="url(#fvSplashLogoBar)"/>
+            <rect x="228" y="268" width="56" height="124" rx="18" fill="url(#fvSplashLogoBar)"/>
+            <rect x="316" y="216" width="56" height="176" rx="18" fill="url(#fvSplashLogoBar)"/>
+            <path d="M150 268 L344 177" fill="none" stroke="url(#fvSplashLogoArrow)" stroke-width="26" stroke-linecap="round"/>
+            <path d="M384 158 L357 204 L331 150 Z" fill="url(#fvSplashLogoArrow)"/>
           </g>
         </svg>
-        <span class="app-splash__name">FinzoriaFinance</span>
-      </div>
-      <span class="app-splash__bar"></span>
+      <span class="app-splash__name">Fin<span>verra</span></span>
+      <span class="app-splash__dots"><i></i><i></i><i></i></span>
     </div>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>

@@ -1,5 +1,6 @@
 import { Link, useParams } from 'react-router-dom';
 import { FiChevronRight, FiClock } from 'react-icons/fi';
+import AdSlot from '../components/AdSlot/AdSlot';
 import ArticleContent from '../components/ArticleContent/ArticleContent';
 import ArticleImage from '../components/ArticleImage/ArticleImage';
 import BlogGrid from '../components/BlogGrid/BlogGrid';
@@ -26,9 +27,9 @@ export default function BlogDetail() {
         title={blog.title}
         description={blog.excerpt}
         image={blog.ogImage}
-        // ogImage is our own cover illustration, not the in-article photograph,
-        // so it gets its own description rather than reusing blog.imageAlt.
-        imageAlt={`${blog.title} — cover illustration`}
+        // Derived in src/data/blogs.js: our own cover illustration where one
+        // exists, the article's own photograph where it does not.
+        imageAlt={blog.ogImageAlt}
         type="article"
         path={`/blog/${blog.slug}`}
         article={{ publishedTime: blog.isoDate, author: blog.author, section: blog.category }}
@@ -72,9 +73,15 @@ export default function BlogDetail() {
       </article>
 
       {related.length > 0 && (
-        <CategorySection id="related" eyebrow="Continue reading" title="Related Articles">
-          <BlogGrid blogs={related} />
-        </CategorySection>
+        <>
+          <Container size="narrow">
+            <AdSlot placement="related" refreshKey={blog.slug} />
+          </Container>
+
+          <CategorySection id="related" eyebrow="Continue reading" title="Related Articles">
+            <BlogGrid blogs={related} />
+          </CategorySection>
+        </>
       )}
     </>
   );

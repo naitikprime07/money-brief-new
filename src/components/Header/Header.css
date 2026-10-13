@@ -1,14 +1,29 @@
 .header {
   position: sticky;
-  top: 10px;
+  top: 0;
   z-index: 100;
-  padding-inline: 10px;
-  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  /* The bar itself is full-bleed; only its content is centred. */
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.35s ease,
+    border-color 0.35s ease;
 }
 
-/* Scrolling down: pill slides up out of view; scrolling back up reveals it. */
+/* Gradient accent line, edge to edge across the viewport */
+.header::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-brand), var(--color-accent), var(--color-brand));
+  opacity: 0.7;
+}
+
+/* Scrolling down: bar slides up out of view; scrolling back up reveals it. */
 .header--hidden {
-  transform: translateY(calc(-100% - 14px));
+  transform: translateY(-100%);
   pointer-events: none;
 }
 
@@ -16,16 +31,10 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: calc(var(--header-h) - 8px);
+  height: var(--header-h);
   max-width: calc(var(--container) + var(--gutter) * 2);
   margin-inline: auto;
-  padding-inline: clamp(16px, 3vw, 28px);
-  background: var(--header-glass);
-  backdrop-filter: saturate(160%) blur(12px);
-  border: 1px solid var(--color-border);
-  border-radius: 999px;
-  box-shadow: var(--shadow-md);
-  transition: background-color 0.35s ease, border-color 0.35s ease;
+  padding-inline: clamp(16px, 3vw, 32px);
 }
 
 .header__logo {
@@ -36,19 +45,18 @@
 
 .header__mark {
   display: block;
-  /* The logo art sits inside a 512 canvas with ~5% transparent padding, so the
-     box is slightly larger than the old full-bleed tile to keep the same weight. */
-  width: 40px;
-  height: 40px;
-  filter: drop-shadow(0 2px 5px rgba(0, 63, 52, 0.3));
+  width: 36px;
+  height: 36px;
+  filter: drop-shadow(0 2px 5px rgba(180, 83, 9, 0.25));
 }
 
 .header__name {
   font-family: var(--font-serif);
-  font-size: 1.375rem;
-  font-weight: 700;
+  font-size: 1.25rem;
+  font-weight: 800;
   color: var(--color-ink);
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
 }
 
 .header__name span {
@@ -62,25 +70,26 @@
   margin-left: auto;
 }
 
-/* Theme toggle — small round icon button at the end of the nav. */
+/* Theme toggle — circle icon button */
 .header__theme {
   display: grid;
   place-items: center;
-  width: 35px;
-  height: 35px;
-  border: none;
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--color-border);
   border-radius: 50%;
-  background: var(--color-bg-soft);
-  color: var(--color-ink);
-  font-size: 1.0625rem;
+  background: transparent;
+  color: var(--color-muted);
+  font-size: 1rem;
   cursor: pointer;
-  transition: border-color 0.2s ease, color 0.2s ease, background-color 0.35s ease, transform 0.2s ease;
+  transition: border-color 0.2s ease, color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
 }
 
 .header__theme:hover {
   color: var(--color-brand);
   border-color: var(--color-brand);
-  transform: rotate(18deg) scale(1.06);
+  background: var(--color-brand-soft);
+  transform: rotate(20deg) scale(1.08);
 }
 
 .header__theme:active {
@@ -120,22 +129,21 @@
   color: var(--color-brand);
 }
 
-/* Mobile: slide-down panel (floating card below the pill) */
+/* Mobile: dropdown panel below the bar */
 @media (max-width: 959px) {
   .header__nav {
     position: absolute;
-    top: calc(100% + 8px);
-    left: 10px;
-    right: 10px;
+    top: 100%;
+    left: 0;
+    right: 0;
     background: var(--color-surface);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-lg);
+    border-bottom: 3px solid var(--color-brand);
+    box-shadow: var(--shadow-md);
     visibility: hidden;
     opacity: 0;
-    transform: translateY(-8px);
+    transform: translateY(-6px);
     transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
-    max-height: calc(100dvh - var(--header-h) - 20px);
+    max-height: calc(100dvh - var(--header-h));
     overflow-y: auto;
   }
 
@@ -146,13 +154,14 @@
   }
 
   .header__list {
-    padding: 8px var(--gutter) 16px;
+    padding: 12px var(--gutter) 20px;
   }
 
   .header__link {
     padding: 14px 0;
     border-bottom: 1px solid var(--color-border);
     font-size: 1rem;
+    font-weight: 600;
   }
 
   .header__list li:last-child .header__link {
@@ -160,7 +169,7 @@
   }
 }
 
-/* Desktop: inline nav */
+/* Desktop: inline nav with bold-weight active state */
 @media (min-width: 960px) {
   .header__toggle {
     display: none;
@@ -176,32 +185,24 @@
 
   .header__list {
     display: flex;
-    gap: 28px;
+    gap: 6px;
   }
 
   .header__link {
-    position: relative;
-    padding: 6px 0;
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-weight: 500;
+    transition: color 0.15s ease, background 0.15s ease;
   }
 
-  /* Underline sits on every link, scaled to zero; grows in smoothly on
-     hover and stays for the active page. */
-  .header__link::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: -2px;
-    height: 2px;
-    border-radius: 2px;
-    background: var(--color-brand);
-    transform: scaleX(0);
-    transform-origin: center;
-    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  .header__link:hover {
+    color: var(--color-brand);
+    background: var(--color-brand-soft);
   }
 
-  .header__link:hover::after,
-  .header__link.is-active::after {
-    transform: scaleX(1);
+  .header__link.is-active {
+    color: var(--color-brand);
+    background: var(--color-brand-soft);
+    font-weight: 700;
   }
 }

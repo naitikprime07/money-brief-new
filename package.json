@@ -1,9 +1,9 @@
 {
-  "name": "finzoria-finance",
+  "name": "finverra",
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "description": "FinzoriaFinance — a responsive financial education publication built with React, React Router and Google Ad Manager (test units).",
+  "description": "Finverra — a responsive financial education publication built with React, React Router and Google Ad Manager (test units).",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

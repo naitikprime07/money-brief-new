@@ -1,34 +1,24 @@
-/** Top-level sections used by navigation, category pages and the footer. */
+/**
+ * The site's two sections. This is the single source of truth for the header
+ * navigation, the footer topic list, the /blog topic chips, the category pages
+ * and the breadcrumb on an article — add or rename a section here only.
+ *
+ * `name` is the short label used in navigation and on chips; `title` is the
+ * heading of that section's page. Article cards carry the same `name` as their
+ * eyebrow, so a card and its section always read identically.
+ */
 export const CATEGORIES = [
   {
     slug: 'finance',
-    name: 'Personal Finance',
+    name: 'Finance',
     title: 'Personal Finance',
-    description: 'Budgeting, taxes and long-term planning — the everyday building blocks of a healthy financial life.',
+    description: 'Saving, investing, credit, budgeting and tax basics explained in plain language.',
   },
   {
-    slug: 'investing',
-    name: 'Investing',
-    title: 'Investing',
-    description: 'How markets, mutual funds and compounding work, explained for people starting out.',
-  },
-  {
-    slug: 'saving',
-    name: 'Saving',
-    title: 'Saving Money',
-    description: 'Practical ways to build savings, cut costs and prepare for the unexpected.',
-  },
-  {
-    slug: 'banking',
-    name: 'Banking & Credit',
-    title: 'Banking, Credit & Loans',
-    description: 'Accounts, credit scores, credit cards and borrowing — understand the rules before you sign.',
-  },
-  {
-    slug: 'business',
-    name: 'Business & Economy',
-    title: 'Business & Economy',
-    description: 'Inflation, interest rates and small-business finance, and what they mean for your money.',
+    slug: 'cloud',
+    name: 'Cloud',
+    title: 'Cloud & Your Money',
+    description: 'How cloud computing works, what it costs and how it protects — or exposes — your data.',
   },
 ];
 

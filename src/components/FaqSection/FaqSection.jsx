@@ -7,16 +7,18 @@ import './FaqSection.css';
  * FAQ accordion. Native <details>/<summary> keeps it keyboard- and
  * screen-reader-friendly with zero JavaScript.
  */
-export default function FaqSection({ faqs = FAQS }) {
+export default function FaqSection({
+  faqs = FAQS,
+  heading = 'Frequently Asked Questions',
+  description = 'Quick answers to the finance and cloud questions readers ask us most.',
+}) {
   return (
     <section className="faq-section page-section" id="faq" aria-labelledby="faq-title">
       <Container>
         <header className="faq-section__header">
           <span className="eyebrow">Answers</span>
-          <h2 id="faq-title" className="faq-section__title">Frequently Asked Questions</h2>
-          <p className="faq-section__description">
-            Quick answers to the money questions readers ask us most.
-          </p>
+          <h2 id="faq-title" className="faq-section__title">{heading}</h2>
+          <p className="faq-section__description">{description}</p>
         </header>
 
         <div className="faq-section__list">

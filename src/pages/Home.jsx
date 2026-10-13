@@ -10,8 +10,8 @@ import { FAQS } from '../data/faqs';
 const LATEST_COUNT = 6;
 
 export default function Home() {
-  const latest = BLOGS.slice(0, LATEST_COUNT);
-  const more = BLOGS.slice(LATEST_COUNT, LATEST_COUNT * 2);
+  const latest = BLOGS.filter((blog) => blog.section === 'finance').slice(0, LATEST_COUNT);
+  const latestCloud = BLOGS.filter((blog) => blog.section === 'cloud').slice(0, LATEST_COUNT);
 
   return (
     <>
@@ -28,15 +28,15 @@ export default function Home() {
         <BlogGrid blogs={latest} />
       </CategorySection>
 
-      {more.length > 0 && (
+      {latestCloud.length > 0 && (
         <CategorySection
-          id="more"
-          eyebrow="Keep learning"
-          title="More Financial Articles"
-          description="Guides on banking, credit, taxes and the economy — explained in plain language."
-          action={{ label: "Browse the full library", to: "/blog" }}
+          id="cloud"
+          eyebrow="Cloud & your money"
+          title="Latest Cloud Articles"
+          description="How the cloud, apps and digital records now sit underneath everyday money — and how to keep that data safe."
+          action={{ label: 'Browse Cloud articles', to: '/category/cloud' }}
         >
-          <BlogGrid blogs={more} />
+          <BlogGrid blogs={latestCloud} />
         </CategorySection>
       )}
 

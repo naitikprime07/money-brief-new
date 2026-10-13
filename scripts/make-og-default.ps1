@@ -4,7 +4,7 @@
 
 .DESCRIPTION
   The default Open Graph image carries the brand: the deep-green gradient and dot
-  grid are drawn with GDI+, while the FinzoriaFinance logo itself is rasterised from
+  grid are drawn with GDI+, while the Finverra logo itself is rasterised from
   public\favicon.svg (the single source of truth for the mark) using headless Edge,
   so the card can never drift away from the logo used in the header.
 
@@ -21,8 +21,8 @@ $root = Resolve-Path (Join-Path $PSScriptRoot '..')
 $outFile = Join-Path $root 'public\images\og\og-default.png'
 $logoSvg = Join-Path $root 'public\favicon.svg'
 
-$brandName  = 'Finzoria'
-$brandTail  = 'Finance'
+$brandName  = 'Fin'
+$brandTail  = 'verra'
 $tagline    = 'Clear, practical money education'
 
 $w = 1200
@@ -88,7 +88,7 @@ try {
   $g.DrawImage($logo, [single]$markX, [single]$markY, [single]$markSize, [single]$markSize)
   $logo.Dispose()
 
-  # Wordmark: "Finzoria" in white, "Finance" in the logo gold — joined, no space.
+  # Wordmark: "Fin" in white, "verra" in the logo gold — joined, no space.
   $titleFont = New-Object System.Drawing.Font('Segoe UI', 92, [System.Drawing.FontStyle]::Bold, [System.Drawing.GraphicsUnit]::Pixel)
   $nameSize = $g.MeasureString($brandName, $titleFont)
   $tailSize = $g.MeasureString($brandTail, $titleFont)

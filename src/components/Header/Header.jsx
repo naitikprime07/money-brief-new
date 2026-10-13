@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
-import { FiMenu, FiMoon, FiSun, FiX } from 'react-icons/fi';
+import { FiMenu, FiX } from 'react-icons/fi';
+import { LuMoonStar, LuSunMedium } from 'react-icons/lu';
 import { NAV_LINKS, SITE } from '../../config/site';
 import useTheme from '../../hooks/useTheme';
 import Container from '../Container/Container';
@@ -10,14 +11,17 @@ import './Header.css';
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [hidden, setHidden] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const { theme, toggleTheme } = useTheme();
   const { pathname } = useLocation();
 
   // Hide the header while scrolling down; slide it back in on scroll up.
+  // Past a small threshold the bar also shrinks into its compact form.
   useEffect(() => {
     let lastY = window.scrollY;
     const onScroll = () => {
       const y = window.scrollY;
+      setScrolled(y > 30);
       const delta = y - lastY;
       // Ignore tiny scrolls so the header does not flicker.
       if (Math.abs(delta) < 6) return;
@@ -57,12 +61,12 @@ export default function Header() {
   };
 
   return (
-    <header className={`header ${menuOpen ? 'header--open' : ''} ${hidden && !menuOpen ? 'header--hidden' : ''}`}>
+    <header className={`header ${menuOpen ? 'header--open' : ''} ${scrolled ? 'header--scrolled' : ''} ${hidden && !menuOpen ? 'header--hidden' : ''}`}>
       <Container className="header__inner">
         <Link to="/" className="header__logo" aria-label={`${SITE.name} home`} onClick={onLogoClick}>
           <Logo className="header__mark" />
           <span className="header__name">
-            Finzoria<span>Finance</span>
+            Fin<span>verra</span>
           </span>
         </Link>
 
@@ -90,7 +94,7 @@ export default function Header() {
             aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
             title={theme === 'dark' ? 'Light mode' : 'Dark mode'}
           >
-            {theme === 'dark' ? <FiSun aria-hidden="true" /> : <FiMoon aria-hidden="true" />}
+            {theme === 'dark' ? <LuSunMedium aria-hidden="true" /> : <LuMoonStar aria-hidden="true" />}
           </button>
 
           <button

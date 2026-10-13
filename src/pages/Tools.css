@@ -1,0 +1,40 @@
+/* /tools page shell — header block + responsive calculator grid. */
+.tools__header {
+  max-width: 720px;
+  margin-bottom: 32px;
+}
+
+.tools__title {
+  margin-block: 6px 12px;
+  font-size: clamp(2rem, 1.5rem + 2vw, 2.75rem);
+}
+
+.tools__lede {
+  margin: 0;
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  color: var(--color-body);
+}
+
+.tools__grid {
+  display: grid;
+  gap: 20px;
+}
+
+@media (min-width: 900px) {
+  .tools__grid {
+    grid-template-columns: 1fr 1fr;
+    align-items: stretch;
+  }
+}
+
+.tools__note {
+  margin: 28px 0 0;
+  padding: 14px 18px;
+  font-size: 0.85rem;
+  line-height: 1.7;
+  color: var(--color-muted);
+  background: var(--color-bg-soft);
+  border-left: 3px solid var(--color-brand);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}

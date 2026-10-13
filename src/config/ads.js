@@ -40,6 +40,20 @@ export const AD_CONFIG = {
       ],
       minHeight: { mobile: 250, desktop: 250 },
     },
+    /**
+     * Article-page placement next to the Related Articles grid. It deliberately
+     * reuses the top unit's ad tag, so no new `.env` key is needed; the distinct
+     * `placement` targeting is what separates its performance from the band ad.
+     */
+    related: {
+      adUnitPath: UNITS.top,
+      sizes: [[300, 250], [336, 280]],
+      sizeMapping: [
+        [[768, 0], [[300, 250], [336, 280]]],
+        [[0, 0], [[300, 250]]],
+      ],
+      minHeight: { mobile: 250, desktop: 250 },
+    },
   },
 
   /**

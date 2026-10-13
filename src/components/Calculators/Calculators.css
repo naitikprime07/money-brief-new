@@ -1,0 +1,155 @@
+/* Calculator cards on /tools — surface cards with inputs above a live
+   results panel. All colours come from theme variables, so both themes
+   (and the amber/teal brand coding) work automatically. */
+.calc {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 26px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.calc__header {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.calc__title {
+  margin: 0;
+  font-size: 1.2rem;
+  letter-spacing: -0.01em;
+  color: var(--color-ink);
+}
+
+.calc__desc {
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.65;
+  color: var(--color-muted);
+}
+
+.calc__fields {
+  display: grid;
+  gap: 14px;
+}
+
+.calc__field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.calc__label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--color-body);
+}
+
+.calc__inputwrap {
+  position: relative;
+  display: block;
+}
+
+.calc__input {
+  width: 100%;
+  padding: 11px 14px;
+  font: inherit;
+  font-size: 1rem;
+  color: var(--color-ink);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-md);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.calc__input:focus {
+  outline: none;
+  border-color: var(--color-brand);
+  box-shadow: 0 0 0 3px rgba(180, 83, 9, 0.14);
+}
+
+html[data-theme='dark'] .calc__input:focus {
+  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.18);
+}
+
+/* Suffix (% / years) sits inside the input's right edge. */
+.calc__suffix {
+  position: absolute;
+  top: 50%;
+  right: 14px;
+  transform: translateY(-50%);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-muted);
+  pointer-events: none;
+}
+
+.calc__input:has(+ .calc__suffix) {
+  padding-right: 52px;
+}
+
+.calc__results {
+  display: grid;
+  gap: 10px;
+  margin-top: auto;
+  padding-top: 18px;
+  border-top: 1px dashed var(--color-border-strong);
+}
+
+.calc__row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.calc__row-label {
+  font-size: 0.855rem;
+  color: var(--color-body);
+}
+
+.calc__row-value {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-ink);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.calc__row--highlight .calc__row-label {
+  font-weight: 600;
+  color: var(--color-ink);
+}
+
+.calc__row--highlight .calc__row-value {
+  font-size: 1.4rem;
+  color: var(--color-brand);
+}
+
+.calc__guide {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  align-self: flex-start;
+  font-size: 0.83rem;
+  font-weight: 600;
+  color: var(--color-brand);
+  text-decoration: none;
+}
+
+.calc__guide svg {
+  transition: transform 0.2s ease;
+}
+
+.calc__guide:hover {
+  text-decoration: underline;
+}
+
+.calc__guide:hover svg {
+  transform: translateX(3px);
+}

@@ -1,118 +1,115 @@
 import { Link } from 'react-router-dom';
-import { FiArrowRight, FiTrendingUp, FiShield, FiBookOpen } from 'react-icons/fi';
+import { FiArrowRight, FiArrowUpRight, FiTrendingUp, FiCloud } from 'react-icons/fi';
 import ArticleImage from '../ArticleImage/ArticleImage';
 import Container from '../Container/Container';
-import { BLOGS } from '../../data/blogs';
+import { getBlogsBySection, getFeaturedBlog } from '../../data/blogs';
 import './HeroSection.css';
 
-/** Latest articles shown as real thumbnail cards in the hero visual. */
-const CARDS = BLOGS.slice(0, 3);
+/** One large featured guide, plus the newest Cloud and Finance guides beside it. */
+const featured = getFeaturedBlog();
+const latestCloud = getBlogsBySection('cloud').find((b) => b.id !== featured.id);
+const latestFinance = getBlogsBySection('finance').find((b) => b.id !== featured.id);
+const SIDE = [latestCloud, latestFinance].filter(Boolean);
 
-/** Topic chips shown under the subtitle. */
-const TOPICS = ['Budgeting', 'Investing', 'Credit', 'Taxes'];
+/** Scrolling topic strip along the bottom of the hero; each topic has its own dot colour. */
+const TOPICS = [
+  { label: 'Budgeting', section: 'finance', color: '#d97706' },
+  { label: 'Cloud Basics', section: 'cloud', color: '#059669' },
+  { label: 'Saving', section: 'finance', color: '#ca8a04' },
+  { label: 'Data Privacy', section: 'cloud', color: '#0d9488' },
+  { label: 'Investing', section: 'finance', color: '#e11d48' },
+  { label: 'Cloud Storage', section: 'cloud', color: '#7c3aed' },
+  { label: 'Credit & Loans', section: 'finance', color: '#ea580c' },
+  { label: 'Digital Security', section: 'cloud', color: '#16a34a' },
+  { label: 'Taxes', section: 'finance', color: '#9333ea' },
+  { label: 'Cloud Costs', section: 'cloud', color: '#65a30d' },
+];
 
-/** Brand-aligned hero banner. */
+function StoryCard({ blog, size }) {
+  const Icon = blog.section === 'cloud' ? FiCloud : FiTrendingUp;
+  return (
+    <Link to={`/blog/${blog.slug}`} className={`hero__story hero__story--${size} hero__story--${blog.section}`}>
+      <ArticleImage
+        src={blog.image}
+        alt={blog.imageAlt}
+        ratio={size === 'big' ? '4 / 3' : '1 / 1'}
+        className="hero__story-image"
+      />
+      <span className="hero__story-shade" aria-hidden="true" />
+      <span className="hero__story-body">
+        <span className="hero__story-cat">
+          <Icon aria-hidden="true" />
+          {blog.category}
+        </span>
+        <span className="hero__story-title">{blog.title}</span>
+      </span>
+      <span className="hero__story-arrow" aria-hidden="true">
+        <FiArrowUpRight />
+      </span>
+    </Link>
+  );
+}
+
+/** Editorial hero: big type on the left, a photo mosaic of guides on the right. */
 export default function HeroSection() {
   return (
     <section className="hero">
-      {/* Decorative background */}
-      <div className="hero__bg" aria-hidden="true">
-        <span className="hero__orb hero__orb--1" />
-        <span className="hero__orb hero__orb--2" />
-        <span className="hero__grid" />
-      </div>
+      <span className="hero__glow hero__glow--finance" aria-hidden="true" />
+      <span className="hero__glow hero__glow--cloud" aria-hidden="true" />
 
       <Container className="hero__inner">
         <div className="hero__main">
-          <span className="hero__tag">
-            Finance, Simplified
-          </span>
+          <p className="hero__eyebrow">The Finance &amp; Cloud Journal</p>
 
           <h1 className="hero__heading">
-            Smart Money Decisions{' '}
-            <span className="hero__highlight">Start Here</span>
+            <span className="hero__line">Learn</span>{' '}
+            <span className="hero__word hero__word--finance">money.</span>
+            <br />
+            <span className="hero__line">Understand</span>{' '}
+            <span className="hero__line">the</span>{' '}
+            <span className="hero__word hero__word--cloud">cloud.</span>
           </h1>
 
           <p className="hero__subtitle">
-            Expert guides on budgeting, investing, credit &amp; taxes — explained in plain
-            language so you can take control of your financial future.
+            Calm, clear guides for everyday money decisions — and for the digital services
+            that now hold, move and protect your money.
           </p>
 
-          <ul className="hero__topics" aria-label="Topics we cover">
-            {TOPICS.map((topic) => (
-              <li key={topic} className="hero__topic">{topic}</li>
-            ))}
-          </ul>
-
-          {/* <div className="hero__actions">
-            <Link to="/blog" className="hero__btn hero__btn--primary">
-              Explore Articles
-              <FiArrowRight className="hero__btn-icon" aria-hidden="true" />
-            </Link>
-          </div> */}
           <div className="hero__actions">
             <Link to="/blog" className="hero__btn hero__btn--primary">
-              Explore Articles
+              Start reading
               <FiArrowRight aria-hidden="true" />
             </Link>
+            <Link to={`/blog/${featured.slug}`} className="hero__btn hero__btn--ghost">
+              Editor’s pick
+            </Link>
           </div>
-
-          <ul className="hero__trust">
-            <li className="hero__trust-item">
-              <FiBookOpen aria-hidden="true" />
-              Plain-language guides
-            </li>
-            <li className="hero__trust-item">
-              <FiShield aria-hidden="true" />
-              Unbiased, no hype
-            </li>
-          </ul>
         </div>
 
-        <div className="hero__visual" aria-hidden="true">
-          {/* Growth panel */}
-          <div className="hero__panel">
-            <div className="hero__panel-head">
-              <span className="hero__panel-label">Your money, growing</span>
-              <span className="hero__panel-badge">
-                <FiTrendingUp />
-                +12.4%
-              </span>
-            </div>
-            <svg className="hero__chart" viewBox="0 0 260 90" preserveAspectRatio="none">
-              <defs>
-                <linearGradient id="heroChartFill" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor="currentColor" stopOpacity="0.28" />
-                  <stop offset="100%" stopColor="currentColor" stopOpacity="0" />
-                </linearGradient>
-              </defs>
-              <path
-                className="hero__chart-area"
-                d="M0 78 L30 70 L60 74 L90 58 L120 62 L150 44 L180 48 L210 28 L240 22 L260 10 L260 90 L0 90 Z"
-                fill="url(#heroChartFill)"
-              />
-              <path
-                className="hero__chart-line"
-                d="M0 78 L30 70 L60 74 L90 58 L120 62 L150 44 L180 48 L210 28 L240 22 L260 10"
-                fill="none"
-              />
-              <circle className="hero__chart-dot" cx="260" cy="10" r="4" />
-            </svg>
+        <div className="hero__mosaic">
+          <StoryCard blog={featured} size="big" />
+          <div className="hero__side">
+            {SIDE.map((blog) => (
+              <StoryCard key={blog.id} blog={blog} size="small" />
+            ))}
           </div>
-
-          {/* Latest article cards */}
-          {CARDS.map((blog, index) => (
-            <div key={blog.id} className={`hero__card hero__card--${index + 1}`}>
-              <span className="hero__card-num">{String(index + 1).padStart(2, '0')}</span>
-              <ArticleImage src={blog.image} alt="" ratio="1 / 1" className="hero__card-image" />
-              <div className="hero__card-text">
-                <span className="hero__card-cat">{blog.category}</span>
-                <span className="hero__card-title">{blog.title}</span>
-              </div>
-            </div>
-          ))}
         </div>
       </Container>
+
+      <div className="hero__marquee" aria-label="Topics we cover">
+        <ul className="hero__marquee-track">
+          {[...TOPICS, ...TOPICS].map((topic, index) => (
+            <li
+              key={`${topic.label}-${index}`}
+              className={`hero__marquee-item hero__marquee-item--${topic.section}`}
+              style={{ '--topic-dot': topic.color }}
+              aria-hidden={index >= TOPICS.length ? 'true' : undefined}
+            >
+              {topic.label}
+            </li>
+          ))}
+        </ul>
+      </div>
     </section>
   );
 }

@@ -13,7 +13,7 @@
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--color-muted);
-  margin-top: 2rem;
+  margin-top: 1rem;
 }
 
 .ad-slot__frame {
@@ -50,6 +50,11 @@
 
 .ad-slot--content {
   padding-block: 24px;
+}
+
+/* Article-page banner that introduces the Related Articles grid */
+.ad-slot--related {
+  margin-block: 4px 32px;
 }
 
 /* Hide empty frame borders from the main ad bands to keep a clean look */

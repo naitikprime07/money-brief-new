@@ -1,12 +1,28 @@
+/* ==========================================================
+   BLOG CARD
+   Framed layout: the photo sits inside the card with an even
+   inset, the category pill floats on its top-left corner and
+   the text column closes with a hairline-ruled footer.
+   Finance cards run on amber, Cloud cards on emerald.
+   ========================================================== */
 .blog-card {
   height: 100%;
 }
 
+.blog-card--finance {
+  --card-color: var(--color-brand);
+}
+
+.blog-card--cloud {
+  --card-color: var(--color-accent);
+}
+
+/* ---------- Shell ---------- */
 .blog-card__link {
   display: flex;
   flex-direction: column;
   height: 100%;
-  overflow: hidden;
+  padding: 10px 10px 0;
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
@@ -15,31 +31,78 @@
 }
 
 .blog-card__link:hover {
-  transform: translateY(-3px);
-  border-color: var(--color-border-strong);
+  transform: translateY(-4px);
+  border-color: var(--card-color, var(--color-brand));
   box-shadow: var(--shadow-md);
 }
 
-.blog-card__link:hover .article-image img {
-  transform: scale(1.03);
+.blog-card__link:focus-visible {
+  outline: 2px solid var(--card-color, var(--color-brand));
+  outline-offset: 3px;
 }
 
+/* ---------- Photo ---------- */
+.blog-card__media {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+}
+
+.blog-card__image img {
+  transition: transform 0.45s ease;
+}
+
+/* Light scrim under the pill so its label stays readable on any photo */
+.blog-card__media::after {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  z-index: 1;
+  height: 40%;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.18), rgba(0, 0, 0, 0));
+  pointer-events: none;
+}
+
+.blog-card__link:hover .blog-card__image img {
+  transform: scale(1.05);
+}
+
+.blog-card__cat {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 2;
+  padding: 4px 10px;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  background: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--card-color, var(--color-brand));
+}
+
+/* ---------- Text column ---------- */
 .blog-card__body {
   display: flex;
   flex: 1;
   flex-direction: column;
   gap: 10px;
-  padding: 20px;
+  padding: 16px 8px 18px;
 }
 
 .blog-card__title {
-  font-size: 1.25rem;
+  font-size: 1.2rem;
+  font-weight: 700;
   line-height: 1.3;
+  letter-spacing: -0.015em;
   transition: color 0.15s ease;
 }
 
 .blog-card__link:hover .blog-card__title {
-  color: var(--color-brand);
+  color: var(--card-color, var(--color-brand));
 }
 
 .blog-card__excerpt {
@@ -48,9 +111,11 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
   font-size: 0.9375rem;
+  line-height: 1.65;
   color: var(--color-body);
 }
 
+/* ---------- Footer row ---------- */
 .blog-card__meta {
   display: flex;
   align-items: center;
@@ -63,18 +128,47 @@
   color: var(--color-muted);
 }
 
+.blog-card__facts {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+/* Arrow disc — outlined at rest, fills with the section colour on hover.
+   var(--color-bg) keeps the arrow readable in both themes. */
 .blog-card__cta {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  font-weight: 600;
-  color: var(--color-brand);
+  justify-content: center;
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--color-border-strong);
+  border-radius: 50%;
+  background: var(--color-surface);
+  color: var(--card-color, var(--color-brand));
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 }
 
 .blog-card__cta svg {
-  transition: transform 0.2s ease;
+  width: 16px;
+  height: 16px;
 }
 
-.blog-card__link:hover .blog-card__cta svg {
-  transform: translateX(3px);
+.blog-card__link:hover .blog-card__cta {
+  background: var(--card-color, var(--color-brand));
+  border-color: var(--card-color, var(--color-brand));
+  color: var(--color-bg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .blog-card__link,
+  .blog-card__image img,
+  .blog-card__cta {
+    transition: none;
+  }
+
+  .blog-card__link:hover {
+    transform: none;
+  }
 }

@@ -1,12 +1,12 @@
 <#
 .SYNOPSIS
-  Downloads the 14 article photographs into public\images\photos\.
+  Downloads the article photographs into public\images\photos\.
 
 .DESCRIPTION
-  FinzoriaFinance article images are real photographs used under the Pexels Licence:
+  Finverra article images are real photographs used under the Pexels Licence:
   free for commercial use, no attribution required (https://www.pexels.com/license/).
   Copyright stays with each photographer, so the Terms page deliberately does not
-  describe photographs as FinzoriaFinance work.
+  describe photographs as Finverra work.
 
   Files are self-hosted rather than hot-linked, so a removed or renamed upstream
   file can never break the live site.
@@ -38,22 +38,28 @@ $root = Split-Path -Parent $PSScriptRoot
 $dest = Join-Path $root 'public\images\photos'
 
 # slug => Pexels photo id. This table is the single source of truth; src/data
-# and src/config never name a third-party image URL themselves.
+# and src/config only ever name the local /images/photos/<slug>.jpg result.
 $photos = [ordered]@{
-  'how-compound-interest-works'          = 11391951
-  'beginners-guide-to-investing'         = 5716016
-  'how-to-build-an-emergency-fund'       = 7010128
-  'smart-ways-to-save-money'             = 1602726
-  'understanding-mutual-funds'           = 730564
-  'what-is-a-credit-score'               = 19867473
-  'how-to-create-a-monthly-budget'       = 4386339
-  'stock-market-basics-for-beginners'    = 6770610
-  'how-inflation-affects-your-money'     = 4971967
-  'financial-planning-for-young-adults'  = 6963046
-  'how-to-use-credit-cards-responsibly'  = 5239818
-  'understanding-loans-and-interest-rates' = 8293750
-  'tax-basics-everyone-should-know'      = 6863337
-  'how-small-businesses-manage-cash-flow' = 4921267
+  'how-compound-interest-works'          = 6774947
+  'beginners-guide-to-investing'         = 9260568
+  'how-to-build-an-emergency-fund'       = 5125690
+  'smart-ways-to-save-money'             = 7118214
+  'understanding-mutual-funds'           = 5484739
+  'what-is-a-credit-score'               = 9384423
+  'how-to-create-a-monthly-budget'       = 11350082
+  'stock-market-basics-for-beginners'    = 38412413
+  'how-inflation-affects-your-money'     = 4124939
+  'financial-planning-for-young-adults'  = 30535786
+  'how-to-use-credit-cards-responsibly'  = 7821730
+  'understanding-loans-and-interest-rates' = 12955837
+  'tax-basics-everyone-should-know'      = 6863184
+  'open-banking-and-your-money'            = 5208871
+  'how-digital-banks-protect-your-data'   = 11391947
+  'what-happens-to-your-financial-data-online' = 17018372
+  'what-is-cloud-computing'               = 37730211
+  'public-private-and-hybrid-cloud'       = 2425567
+  'understanding-cloud-costs'             = 6994260
+  'cloud-storage-and-backups'             = 5951759
 }
 
 New-Item -ItemType Directory -Force -Path $dest | Out-Null

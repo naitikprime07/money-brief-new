@@ -25,9 +25,11 @@ export default function About() {
           <div className="about__body">
             <h2>What we cover</h2>
             <p>
-              Our guides span personal finance, saving, investing, mutual funds, banking, credit, loans,
-              taxes and the wider economy. Each article explains the core ideas, the trade-offs involved and
-              the questions worth asking before you act.
+              Everything we publish sits in one of two sections. <strong>Finance</strong> covers budgeting,
+              saving, investing, mutual funds, credit, loans and tax basics. <strong>Cloud</strong> covers how
+              cloud computing works, what it costs, and how it stores, protects — or exposes — the records
+              behind modern money. Each article explains the core ideas, the trade-offs involved and the
+              questions worth asking before you act.
             </p>
 
             <h2 id="editorial-standards">Editorial standards</h2>
@@ -52,7 +54,7 @@ export default function About() {
 
             <h2 id="who-writes-here">Who writes here</h2>
             <p>
-              Articles are published under desk names — Markets, Banking, Finance and Economy — rather than
+              Articles are published under desk names — Finance and Cloud — rather than
               under invented individual bylines or claimed professional credentials. Guidance on reusing our
               content is in our{' '}
               <Link to="/terms#copyright">Terms &amp; Conditions</Link>.
