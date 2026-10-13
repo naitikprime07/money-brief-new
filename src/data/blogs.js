@@ -17,6 +17,8 @@ const ul = (...items) => ({ type: 'ul', items });
 const ol = (...items) => ({ type: 'ol', items });
 const callout = (title, text) => ({ type: 'callout', title, text });
 
+
+
 /**
  * The two sections every article belongs to, spread into the entries below.
  * The labels match src/data/categories.js, which is where navigation, the
@@ -25,6 +27,7 @@ const callout = (title, text) => ({ type: 'callout', title, text });
  */
 const FINANCE = { category: 'Finance', section: 'finance' };
 const CLOUD = { category: 'Cloud', section: 'cloud' };
+const CRM = { category: 'CRM', section: 'crm' };
 
 const RAW_BLOGS = [
   /* ------------------------------------------------------------------ */
@@ -741,6 +744,217 @@ const RAW_BLOGS = [
       p('A simple folder structure — for example, one folder per year with sub-folders for banking, tax and insurance — makes records easy to find when you need them for a loan application or a tax query. Test restoring a file occasionally so you know the backup actually works.'),
     ],
   },
+  /* ------------------------------------------------------------------ */
+  /* CRM                                                                */
+  /* ------------------------------------------------------------------ */
+  {
+    id: 22,
+    slug: 'what-is-crm-software',
+    title: 'What Is CRM Software and Why Businesses Pay for It',
+    ...CRM,
+    excerpt:
+      'CRM keeps every customer detail and conversation in one shared place — and it is almost always rented from the cloud. Here is what it does and how the subscription pricing works.',
+    isoDate: '2026-10-13',
+    author: 'CRM Desk',
+    imageAlt: 'A group of colleagues seated around a conference table watching a presentation on a large office screen',
+    ogImage: '/images/photos/what-is-crm-software.jpg',
+    content: [
+      p('CRM — customer relationship management — is software that collects everything a business knows about the people it sells to into one shared record: contact details, emails, calls, past purchases and the stage each deal has reached. Instead of that information living in separate inboxes and spreadsheets, it sits in a single system the whole team can see. Modern CRM is delivered as cloud software you use through a browser, so it is worth understanding both what it does and how it is paid for.'),
+      h2('What It Actually Does'),
+      ul(
+        'Keeps one up-to-date profile per customer, visible to sales, support and marketing alike.',
+        'Tracks a deal through stages — enquiry, quote, negotiation, won — so nothing quietly stalls.',
+        'Automates routine follow-ups and logs activity automatically instead of by memory.',
+        'Turns the pipeline into reports: how much is coming, where deals get stuck, which channels convert.',
+      ),
+      h2('Why It Is Almost Always Cloud Now'),
+      p('Older CRM was installed on a company’s own servers and maintained by an internal team. Today most businesses rent it as Software as a Service: the provider runs the servers, ships updates and makes the system reachable from any device. That fits how small and growing teams work, and it removes the upfront hardware cost — but it replaces a one-off purchase with a recurring bill, which is where the money question starts.'),
+      callout('The pricing model', 'Cloud CRM is usually charged per user, per month, in tiers. A small team of ten paying 30 each spends 300 a month, or 3,600 a year. The number climbs on two axes at once: more seats, and higher tiers as you unlock features.'),
+      h2('The Costs That Creep Up'),
+      p('Because the fee scales with seats and tiers, a CRM bill rarely stays where it started. Extra users get added, a team upgrades a tier to unlock a report, and paid add-ons or integrations stack on top. Left unreviewed, a tool budgeted for at a handful of rupees per user can quietly multiply. Treating it like any other recurring subscription — listed, priced annually and questioned each renewal — keeps it honest.'),
+      h2('Your Customer Data Now Lives On Someone Else’s Servers'),
+      p('The same trade-off that applies to any cloud service applies here, only more sharply, because a CRM holds your most valuable commercial record. The provider protects the platform; you protect your logins, enable two-factor verification and control who can export data. Before committing, check that you can pull every contact out in a usable format, where the data is physically stored, and how the service handles privacy obligations for customer information.'),
+      h2('Choosing One Without Overspending'),
+      ol(
+        'Start from the specific problem — lost follow-ups, no pipeline view — not from the feature list.',
+        'Count the people who will genuinely log in and pay only for those seats.',
+        'Run a free trial on real data before paying for an annual term.',
+        'Confirm you can export everything, so leaving is always an option.',
+        'Compare monthly against annual pricing, but only commit to a year once the tool has proven itself.',
+      ),
+      p('A good CRM is less about the software and more about whether a team consistently records what it knows. The tool earns its subscription when the shared picture it creates helps the business close and keep more customers — and it is just another cloud cost to review the moment it stops doing that.'),
+    ],
+  },
+  {
+    id: 23,
+    slug: 'how-to-choose-a-crm-for-your-business',
+    title: 'How to Choose a CRM for a Small Business',
+    ...CRM,
+    excerpt:
+      'Feature lists tempt you to over-buy. Here is a practical way to pick a CRM that fits how your team actually works — and the size of its budget.',
+    isoDate: '2026-10-13',
+    author: 'CRM Desk',
+    imageAlt: 'A team of colleagues gathered around a laptop in a bright office meeting, reviewing information together',
+    ogImage: '/images/photos/how-to-choose-a-crm-for-your-business.jpg',
+    content: [
+      p('Most CRM regret is not caused by a bad product but by a mismatch: a small team buying a tool built for a large one, then using a fraction of it and paying for all of it. Choosing well is mostly about matching the software to how people actually work, and being honest about how many of them there are.'),
+      h2('Start From the Problem, Not the Product'),
+      p('Before looking at any vendor, write down the specific failure you are trying to fix — leads go cold because nobody follows up, there is no view of what is in the pipeline, contact details live in five different inboxes. That one sentence becomes the filter every option has to pass, and it makes a long feature list far less persuasive.'),
+      h2('The Questions That Narrow It Down'),
+      ul(
+        'How many people will genuinely log in each week, not how many are on the payroll?',
+        'How much setup can you do yourself, and how much needs a paid integrator?',
+        'Does it connect to the email, calendar and invoicing tools you already use?',
+        'Can you export all your data at any time, in a format another system would accept?',
+        'What does the second year cost, once any introductory discount ends?',
+      ),
+      callout('The seat trap', 'Per-user pricing looks tiny until it is multiplied by everyone who “might need access”. Price the tool for the people who will use it weekly; extra seats you never fill are the fastest way to overspend.'),
+      h2('Read the Fine Print on Free and Cheap Tiers'),
+      p('Entry-level and free plans are a real way to start, but they usually cap something that matters later — the number of contacts, stored records, automation runs or users. The advertised price is often the price right before the feature you eventually need unlocks a higher tier, so compare the plan you will grow into, not just the one you start on.'),
+      h2('Trial It on Real Work, Not the Demo'),
+      ol(
+        'Import a slice of your actual contacts rather than the vendor’s sample data.',
+        'Run one genuine deal from first enquiry to marked-won.',
+        'Try it on a phone, because that is where sales people live.',
+        'Export everything to confirm leaving is genuinely possible.',
+      ),
+      p('A modest tool the team fills in every day beats a powerful one they ignore. Choose for fit, then revisit the decision each year as the business changes.'),
+    ],
+  },
+  {
+    id: 24,
+    slug: 'how-crm-helps-small-business-cash-flow',
+    title: 'How a CRM Helps You Manage Cash Flow',
+    ...CRM,
+    excerpt:
+      'Sales software usually gets filed under “marketing”, but a well-used CRM reaches straight into when the money arrives. Here is the connection.',
+    isoDate: '2026-10-12',
+    author: 'CRM Desk',
+    imageAlt: 'A calculator and an open laptop on a wooden desk set up for accounting or financial work',
+    ogImage: '/images/photos/how-crm-helps-small-business-cash-flow.jpg',
+    content: [
+      p('Cash flow is not profit. It is the timing of money coming in versus money going out, and a business can be profitable on paper yet run short because the cash has not landed yet. Most of the painful part of that gap sits on the “in” side — sales made but not yet collected — which is exactly where a CRM can reach.'),
+      h2('A Pipeline Is Really a Forecast'),
+      p('A CRM that tracks deals by stage gives you a forward view of income. If a set of opportunities reliably converts from “proposal” to “won” in about six weeks, today’s pipeline is a reasonable estimate of money arriving next month and the one after. That is enough lead time to plan a purchase, a hire or payroll instead of reacting to the bank balance.'),
+      h2('Getting Paid Sooner'),
+      ul(
+        'Trigger the invoice the moment a deal is marked won, rather than when someone remembers.',
+        'Record payment terms and due dates so nothing quietly drifts past them.',
+        'Set follow-up reminders for overdue bills before they age into a real problem.',
+        'Keep the full conversation history so a disputed invoice can be resolved quickly.',
+      ),
+      callout('The gap that hurts', 'A small business can be profitable on paper and still struggle to pay its bills when customer payments arrive too late. Anything that shortens the distance between “we won the work” and “the money is in the account” is worth real money, even if it never shows up as a sale.'),
+      h2('Fewer Lost Leads, Steadier Income'),
+      p('You already paid to attract every enquiry. When follow-ups slip, that spend is wasted and revenue arrives later than it should. The discipline a CRM imposes — nothing left un-contacted — converts more of what you already paid for, which smooths the income line you are forecasting from.'),
+      h2('Where It Meets Your Accounts'),
+      p('A CRM is not a ledger and should not pretend to be. Its job is to hand a won deal to your invoicing or accounting system cleanly, so the sale becomes a bill without re-keying it. Keep the two connected and reconciled; the moment they drift apart, the forecast stops being trustworthy.'),
+      p('None of this creates cash on its own. It simply makes the timing of the cash you are already earning visible and a little faster to collect — which, for a small business, is often the whole battle.'),
+    ],
+  },
+  {
+    id: 25,
+    slug: 'keeping-your-crm-data-clean',
+    title: 'Keeping Your CRM Data Clean and Trustworthy',
+    ...CRM,
+    excerpt:
+      'A CRM is only as good as the records inside it. Duplicates, stale contacts and empty fields quietly undo the decisions you make from it.',
+    isoDate: '2026-10-11',
+    author: 'CRM Desk',
+    imageAlt: 'A person’s hands sorting a row of labelled file folders in an office',
+    ogImage: '/images/photos/keeping-your-crm-data-clean.jpg',
+    content: [
+      p('Teams tend to treat a CRM the way people treat a drawer: they throw things in, and once it is full they stop trusting it. The difference is that a messy drawer costs you a minute, while messy customer data costs you decisions — a forecast built on dead deals, a campaign sent to the wrong addresses, a support agent who cannot see the real history.'),
+      h2('How the Data Goes Bad'),
+      ul(
+        'Duplicates: two reps each create their own version of the same company.',
+        'Staleness: contacts change jobs and the record quietly becomes wrong.',
+        'Empty fields: the data you need for a report is the data nobody filled in.',
+        'Private notes that only their author can decipher.',
+      ),
+      h2('Why Dirty Data Costs Money'),
+      p('Wasted marketing spend on addresses that no longer reach anyone. Inflated forecasts that overstate what is coming in. Support and sales contradicting each other because they are looking at two versions of the same customer. Every one of these is a decision made against a picture that is no longer true, and the tool cannot tell you that — only maintenance can.'),
+      callout('Contact data decays on its own', 'People switch jobs, companies move and emails change constantly. A contact list that was perfectly accurate two years ago is quietly wrong today, which is why regular cleanup beats a single careful setup.'),
+      h2('Habits That Keep It Tidy'),
+      ol(
+        'Check for an existing record before creating a new one — dedupe at the door, not later.',
+        'Make only the fields that genuinely matter required, so people fill them instead of skipping.',
+        'Give important accounts an owner responsible for keeping them current.',
+        'Run a periodic review to archive stale records rather than deleting in a panic.',
+      ),
+      h2('Use Automation Carefully'),
+      p('Rules that enrich, merge or standardise records are a real help, but they also scale any mistake they make. Apply changes in batches you can review and roll back, and never let an automation delete — archive instead, so a bad rule is recoverable.'),
+      p('The whole value of a CRM is a shared, accurate picture the team can act on. Hygiene is not admin busywork; it is the thing that keeps that picture true enough to trust.'),
+    ],
+  },
+  {
+    id: 26,
+    slug: 'crm-automation-what-to-automate-first',
+    title: 'CRM Automation: What to Automate First',
+    ...CRM,
+    excerpt:
+      'Automation is the reason a CRM saves time rather than quietly eating it. Here is where to start, and the repetitive tasks that cost you the most when left manual.',
+    isoDate: '2026-10-13',
+    author: 'CRM Desk',
+    imageAlt: 'A hand writing in a notebook on a desk beside an open laptop, planning tasks and workflow',
+    ogImage: '/images/photos/crm-automation-what-to-automate-first.jpg',
+    content: [
+      p('The point of a CRM is not to give the team more boxes to fill in — it is to remove the repetitive, forgettable steps that humans are bad at and machines are perfect at. Done well, automation means every lead gets the same prompt follow-up whether or not anyone remembered, and reps spend their attention on the deals that actually need judgement.'),
+      h2('What Automation Buys You'),
+      ul(
+        'Consistency: the same sequence runs for every lead, not whoever remembered.',
+        'Speed: a response goes out seconds after a form fills, not at the end of the day.',
+        'Memory: nothing waits on a person recalling the next step.',
+        'Cleaner data: fields filled and records matched automatically stay tidy.',
+      ),
+      h2('Start With the Obvious Wins'),
+      ol(
+        'A welcome or acknowledgement the moment a new lead arrives.',
+        'Follow-up tasks created automatically when a deal changes stage.',
+        'Assigning each new lead to an owner, spread evenly across the team.',
+        'Flagging likely duplicate contacts before they are saved.',
+        'Turning an email or a form submission into a logged activity.',
+      ),
+      callout('A simple rule', 'Automate anything that is the same every time and is triggered by something the CRM already knows. Leave anything that needs judgement, tone or context to a person — automating that is how teams generate polite spam.'),
+      h2('Where People Over-Automate'),
+      p('The same power misfires easily. Auto-assigning every contact to the wrong owner, firing a sales email at someone who only wanted a receipt, or closing deals on a rule that misreads a pause all create noise and mistakes at scale. Roll out any automation on a small slice first, watch what it actually does for a week, then widen it.'),
+      h2('The Setup Habit That Keeps It Working'),
+      p('Write the manual step down before you automate it, so you know exactly what you are replacing and can spot when the rule drifts. Review the automations a couple of times a year: processes change, and an old rule quietly running is one of the strangest ways a CRM starts to annoy its own users.'),
+    ],
+  },
+  {
+    id: 27,
+    slug: 'migrating-to-a-new-crm',
+    title: 'Migrating to a New CRM Without Losing Your Data',
+    ...CRM,
+    excerpt:
+      'Switching CRM is where customer records most often go missing. A calm, sequenced plan turns a risky migration into a routine one.',
+    isoDate: '2026-10-12',
+    author: 'CRM Desk',
+    imageAlt: 'A laptop connected to a USB drive and cables on a desk, suggesting moving data between systems',
+    ogImage: '/images/photos/migrating-to-a-new-crm.jpg',
+    content: [
+      p('The new CRM is rarely the risky part of a switch. The risk lives entirely in the move: years of contacts, notes and deal history leaving one system and landing intact in another. Most horror stories are not about bad software but about an unplanned migration, so the whole exercise is really about sequencing.'),
+      h2('Before You Move Anything'),
+      ul(
+        'Export everything you have, and look at it — you cannot migrate what you have not seen.',
+        'Decide what genuinely needs to move; years of dead leads may not.',
+        'Clean first: merge duplicates and fix obvious errors, or you are simply relocating junk.',
+      ),
+      h2('Map the Fields, Not Just the Rows'),
+      p('A migration fails quietly when the shapes do not match. The old system’s “Status” may split into three new fields; a custom “How they found us” may have no home at all. Build a simple mapping sheet — every field you care about, old name to new name — before the first row moves, so nothing is dropped because nobody thought to ask.'),
+      callout('Export twice', 'Get your data out in at least two formats and keep a copy somewhere you control before touching the new system. A migration you can roll back is a recoverable experiment; one you cannot is a gamble with your records.'),
+      h2('Move in Stages and Test Each One'),
+      ol(
+        'Run a pilot with a small, known slice of records first.',
+        'Check the counts match and open a sample to confirm notes, owners and dates survived.',
+        'Only then import the full set.',
+        'Reconcile totals again afterwards — the number in should equal the number that landed.',
+      ),
+      h2('Keep the Old System Alive a Little Longer'),
+      p('Resist cancelling the moment the new one looks populated. Run a short overlap where the old system is still available for reference, take one final export as a safety copy, and only then let the old contract lapse. The week after a cutover is exactly when a missing record is most expensive to discover.'),
+      p('A good migration is boring on purpose: inventory, clean, map, pilot, verify, overlap. Every step that feels like overkill is a step that turns “we lost some contacts in the switch” into a sentence you never have to say.'),
+    ],
+  },
 ];
 
 const wordCount = (blocks) =>
@@ -756,7 +970,6 @@ const formatDate = (iso) =>
 /**
  * Article photographs live in public/images/photos/ and are served from our own
  * origin — the site makes no third-party image request. They were fetched by
- * scripts/fetch-photos.ps1 and are used under the Pexels Licence (free for
  * commercial use, no attribution required). Copyright stays with each
  * photographer, so the Terms page never describes photographs as our own work.
  *
@@ -783,6 +996,12 @@ const IMAGES = {
   'public-private-and-hybrid-cloud': '/images/photos/public-private-and-hybrid-cloud.jpg',
   'understanding-cloud-costs': '/images/photos/understanding-cloud-costs.jpg',
   'cloud-storage-and-backups': '/images/photos/cloud-storage-and-backups.jpg',
+  'what-is-crm-software': '/images/photos/what-is-crm-software.jpg',
+  'how-to-choose-a-crm-for-your-business': '/images/photos/how-to-choose-a-crm-for-your-business.jpg',
+  'how-crm-helps-small-business-cash-flow': '/images/photos/how-crm-helps-small-business-cash-flow.jpg',
+  'keeping-your-crm-data-clean': '/images/photos/keeping-your-crm-data-clean.jpg',
+  'crm-automation-what-to-automate-first': '/images/photos/crm-automation-what-to-automate-first.jpg',
+  'migrating-to-a-new-crm': '/images/photos/migrating-to-a-new-crm.jpg',
 };
 
 /**
@@ -808,19 +1027,33 @@ export const getBlogsBySection = (section) => BLOGS.filter((blog) => blog.sectio
 export const getFeaturedBlog = () => BLOGS.find((blog) => blog.featured) ?? BLOGS[0];
 
 /**
- * Related articles blend both sections rather than showing a single-topic block:
- * same-section and other-section picks are interleaved (most recent first in
- * each), so a Finance post surfaces a Cloud read too, and vice versa.
+ * Related articles are a mix across the site's sections rather than a block
+ * from a single one: we round-robin over every section (starting with the
+ * article's own) and take one from each in turn, so three slots surface three
+ * different categories. Most recent first within each section.
  */
 export const getRelatedBlogs = (blog, limit = 3) => {
-  const others = BLOGS.filter((item) => item.id !== blog.id);
-  const sameSection = others.filter((item) => item.section === blog.section);
-  const rest = others.filter((item) => item.section !== blog.section);
+  const allSections = [...new Set(BLOGS.map((item) => item.section))];
+  // Own section first, then the rest, so the first pick stays closely related.
+  const orderedSections = [
+    blog.section,
+    ...allSections.filter((section) => section !== blog.section),
+  ];
+  const buckets = orderedSections
+    .map((section) => BLOGS.filter((item) => item.section === section && item.id !== blog.id))
+    .filter((bucket) => bucket.length > 0);
 
   const mixed = [];
-  for (let i = 0; i < Math.max(sameSection.length, rest.length); i += 1) {
-    if (sameSection[i]) mixed.push(sameSection[i]);
-    if (rest[i]) mixed.push(rest[i]);
+  for (let round = 0; mixed.length < limit; round += 1) {
+    let addedThisRound = false;
+    for (const bucket of buckets) {
+      if (bucket[round]) {
+        mixed.push(bucket[round]);
+        addedThisRound = true;
+        if (mixed.length === limit) break;
+      }
+    }
+    if (!addedThisRound) break;
   }
-  return mixed.slice(0, limit);
+  return mixed;
 };

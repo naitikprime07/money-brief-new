@@ -12,6 +12,7 @@
   --color-brand-dark: #92400e;
   --color-brand-soft: #fef3c7;
   --color-accent: #065f46;
+  --color-crm: #9f1239;
 
   /* Component-specific surfaces */
   --header-glass: rgba(250, 246, 239, 0.92);
@@ -51,6 +52,7 @@ html[data-theme='dark'] {
   --color-brand-dark: #d97706;
   --color-brand-soft: #3d2b10;
   --color-accent: #34d399;
+  --color-crm: #fb7185;
 
   --header-glass: rgba(26, 22, 18, 0.84);
   --color-skeleton: #342c24;

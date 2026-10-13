@@ -1,5 +1,5 @@
 /**
- * The site's two sections. This is the single source of truth for the header
+ * The site's sections. This is the single source of truth for the header
  * navigation, the footer topic list, the /blog topic chips, the category pages
  * and the breadcrumb on an article — add or rename a section here only.
  *
@@ -19,6 +19,12 @@ export const CATEGORIES = [
     name: 'Cloud',
     title: 'Cloud & Your Money',
     description: 'How cloud computing works, what it costs and how it protects — or exposes — your data.',
+  },
+  {
+    slug: 'crm',
+    name: 'CRM Software',
+    title: 'CRM Software',
+    description: 'How customer relationship management software works, what it costs and how to get value from it.',
   },
 ];
 

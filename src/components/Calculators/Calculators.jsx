@@ -15,14 +15,21 @@ const num = (value) => {
   return Number.isFinite(n) && n > 0 ? n : 0;
 };
 
-const fmt = (value) =>
-  new Intl.NumberFormat('en', { maximumFractionDigits: 0 }).format(Math.max(0, Math.round(value)));
+const fmt = (value) => {
+  const v = Number.isFinite(value) ? Math.max(0, value) : 0;
+  // Beyond a quadrillion, switch to compact notation (e.g. 72.4T) so the
+  // result row can never blow out the card layout.
+  if (v >= 1e15) {
+    return new Intl.NumberFormat('en', { notation: 'compact', maximumFractionDigits: 2 }).format(v);
+  }
+  return new Intl.NumberFormat('en', { maximumFractionDigits: 0 }).format(Math.round(v));
+};
 
-function Field({ label, suffix, value, onChange, min = 0, max }) {
+function Field({ label, suffix, value, onChange, min = 0, max = Infinity }) {
   return (
     <label className="calc__field">
       <span className="calc__label">{label}</span>
-      <span className="calc__inputwrap">
+      <span className="calc__inputwrap"> 
         <input
           className="calc__input"
           type="number"
@@ -30,7 +37,13 @@ function Field({ label, suffix, value, onChange, min = 0, max }) {
           value={value}
           min={min}
           max={max}
-          onChange={(event) => onChange(event.target.value)}
+          onChange={(event) => {
+            const raw = event.target.value;
+            const n = Number(raw);
+            // The HTML max attribute alone still lets you type past it — clamp here
+            // so the input can never exceed the maximum usable value.
+            onChange(raw !== '' && Number.isFinite(n) && n > max ? String(max) : raw);
+          }}
         />
         {suffix && <span className="calc__suffix">{suffix}</span>}
       </span>

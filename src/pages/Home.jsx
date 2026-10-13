@@ -12,6 +12,7 @@ const LATEST_COUNT = 6;
 export default function Home() {
   const latest = BLOGS.filter((blog) => blog.section === 'finance').slice(0, LATEST_COUNT);
   const latestCloud = BLOGS.filter((blog) => blog.section === 'cloud').slice(0, LATEST_COUNT);
+  const latestCrm = BLOGS.filter((blog) => blog.section === 'crm').slice(0, LATEST_COUNT);
 
   return (
     <>
@@ -37,6 +38,18 @@ export default function Home() {
           action={{ label: 'Browse Cloud articles', to: '/category/cloud' }}
         >
           <BlogGrid blogs={latestCloud} />
+        </CategorySection>
+      )}
+
+      {latestCrm.length > 0 && (
+        <CategorySection
+          id="crm"
+          eyebrow="CRM software"
+          title="Latest CRM Software Articles"
+          description="Customer relationship management software explained — how it works, what it costs and how to get real value from it."
+          action={{ label: 'Browse CRM articles', to: '/category/crm' }}
+        >
+          <BlogGrid blogs={latestCrm} />
         </CategorySection>
       )}
 

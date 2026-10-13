@@ -1,6 +1,5 @@
 import { Link, useParams } from 'react-router-dom';
 import { FiChevronRight, FiClock } from 'react-icons/fi';
-import AdSlot from '../components/AdSlot/AdSlot';
 import ArticleContent from '../components/ArticleContent/ArticleContent';
 import ArticleImage from '../components/ArticleImage/ArticleImage';
 import BlogGrid from '../components/BlogGrid/BlogGrid';
@@ -73,15 +72,9 @@ export default function BlogDetail() {
       </article>
 
       {related.length > 0 && (
-        <>
-          <Container size="narrow">
-            <AdSlot placement="related" refreshKey={blog.slug} />
-          </Container>
-
-          <CategorySection id="related" eyebrow="Continue reading" title="Related Articles">
-            <BlogGrid blogs={related} />
-          </CategorySection>
-        </>
+        <CategorySection id="related" eyebrow="Continue reading" title="Related Articles">
+          <BlogGrid blogs={related} />
+        </CategorySection>
       )}
     </>
   );

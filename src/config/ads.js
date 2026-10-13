@@ -58,15 +58,18 @@ export const AD_CONFIG = {
 
   /**
    * Interstitial shown when a reader opens an article.
-   * The unit is preloaded in the background at app start as a GPT out-of-page
-   * INTERSTITIAL slot in trigger mode: the ad fills hidden and is displayed
-   * instantly on an article click; if no ad is preloaded the reader navigates
-   * immediately with zero waiting. Google renders the full-screen container
-   * and its native controls; closing it continues the pending navigation.
+   * The unit is preloaded in the background at app start as a normal in-page
+   * display slot and rendered into our own full-screen overlay, so the blurred
+   * backdrop is styled by us and reads identically in light and dark themes.
+   * On an article click the overlay appears instantly (no network wait); if no
+   * ad is preloaded the reader navigates immediately with zero waiting.
+   * NOTE: VITE_AD_UNIT_INTERSTITIAL must be a display-format ad unit that can
+   * fill these sizes (e.g. 300x250 / 300x357), not a GPT interstitial-format unit.
    */
   interstitial: {
     enabled: true,
     adUnitPath: UNITS.interstitial,
+    sizes: [[300, 250], [300, 357], [320, 480]],
     /** Minimum gap between interstitials. 0 = show on every article click (useful while testing). */
     frequencyCapMs: 0,
   },

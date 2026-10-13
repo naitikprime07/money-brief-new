@@ -2,9 +2,9 @@ import { CATEGORIES } from '../data/categories';
 
 export const SITE = {
   name: 'Finverra',
-  tagline: 'Clear, practical money education',
+  tagline: 'Finance, Cloud & CRM — explained simply',
   description:
-    'Finverra explains personal finance and the cloud services behind modern money in plain language — educational guides for everyday financial decisions.',
+    'Finverra explains personal finance, cloud computing and CRM software in plain language — practical guides, comparisons and tools for everyday money and business decisions.',
   /** Used to build canonical and Open Graph URLs. Set VITE_SITE_URL in production. */
   url: (import.meta.env.VITE_SITE_URL || 'https://finverra.com').replace(/\/$/, ''),
   defaultImage: '/images/og/og-default.png',

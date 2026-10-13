@@ -118,7 +118,10 @@ html[data-theme='dark'] .calc__input:focus {
   font-weight: 700;
   color: var(--color-ink);
   font-variant-numeric: tabular-nums;
-  white-space: nowrap;
+  /* Long results must wrap inside the card instead of overflowing it. */
+  min-width: 0;
+  text-align: right;
+  overflow-wrap: anywhere;
 }
 
 .calc__row--highlight .calc__row-label {

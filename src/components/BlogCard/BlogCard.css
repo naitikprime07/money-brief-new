@@ -17,6 +17,10 @@
   --card-color: var(--color-accent);
 }
 
+.blog-card--crm {
+  --card-color: var(--color-crm);
+}
+
 /* ---------- Shell ---------- */
 .blog-card__link {
   display: flex;

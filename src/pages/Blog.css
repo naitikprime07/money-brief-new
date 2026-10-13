@@ -1,3 +1,19 @@
+/* Back link shown on topic pages, above the header. */
+.listing__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 18px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-muted);
+  transition: color 0.15s ease;
+}
+
+.listing__back:hover {
+  color: var(--color-brand);
+}
+
 .listing__header {
   max-width: 720px;
   margin-bottom: 28px;
@@ -39,4 +55,44 @@
 .listing__chip:hover {
   border-color: var(--color-brand);
   color: var(--color-brand);
+}
+
+/* "Load more" on the All Articles grid. */
+.listing__more {
+  display: flex;
+  justify-content: center;
+  margin-top: 32px;
+}
+
+.listing__more-btn {
+  padding: 10px 24px;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  background: var(--color-surface);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-ink);
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.listing__more-btn:hover {
+  border-color: var(--color-brand);
+  color: var(--color-brand);
+}
+
+/* Existing cards stay put; only newly revealed ones fade up into place. */
+.listing .blog-card {
+  animation: listing-fade-up 0.45s ease both;
+}
+
+@keyframes listing-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

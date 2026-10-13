@@ -6,6 +6,7 @@ import { NAV_LINKS, SITE } from '../../config/site';
 import useTheme from '../../hooks/useTheme';
 import Container from '../Container/Container';
 import Logo from '../Logo/Logo';
+import SearchBar from '../SearchBar/SearchBar';
 import './Header.css';
 
 export default function Header() {
@@ -87,6 +88,7 @@ export default function Header() {
         </nav>
 
         <div className="header__controls">
+          <SearchBar />
           <button
             type="button"
             className="header__theme"

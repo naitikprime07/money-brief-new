@@ -1,23 +1,25 @@
 import { Link } from 'react-router-dom';
-import { FiArrowRight, FiArrowUpRight, FiTrendingUp, FiCloud } from 'react-icons/fi';
+import { FiArrowUpRight, FiTrendingUp, FiCloud, FiUsers } from 'react-icons/fi';
 import ArticleImage from '../ArticleImage/ArticleImage';
 import Container from '../Container/Container';
 import { getBlogsBySection, getFeaturedBlog } from '../../data/blogs';
 import './HeroSection.css';
 
-/** One large featured guide, plus the newest Cloud and Finance guides beside it. */
+/** One large featured guide, plus the newest Cloud and CRM guides beside it. */
 const featured = getFeaturedBlog();
 const latestCloud = getBlogsBySection('cloud').find((b) => b.id !== featured.id);
-const latestFinance = getBlogsBySection('finance').find((b) => b.id !== featured.id);
-const SIDE = [latestCloud, latestFinance].filter(Boolean);
+const latestCrm = getBlogsBySection('crm').find((b) => b.id !== featured.id);
+const SIDE = [latestCloud, latestCrm].filter(Boolean);
 
 /** Scrolling topic strip along the bottom of the hero; each topic has its own dot colour. */
 const TOPICS = [
   { label: 'Budgeting', section: 'finance', color: '#d97706' },
   { label: 'Cloud Basics', section: 'cloud', color: '#059669' },
+  { label: 'CRM Software', section: 'crm', color: '#9f1239' },
   { label: 'Saving', section: 'finance', color: '#ca8a04' },
   { label: 'Data Privacy', section: 'cloud', color: '#0d9488' },
   { label: 'Investing', section: 'finance', color: '#e11d48' },
+  { label: 'Sales Pipeline', section: 'crm', color: '#be123c' },
   { label: 'Cloud Storage', section: 'cloud', color: '#7c3aed' },
   { label: 'Credit & Loans', section: 'finance', color: '#ea580c' },
   { label: 'Digital Security', section: 'cloud', color: '#16a34a' },
@@ -25,8 +27,10 @@ const TOPICS = [
   { label: 'Cloud Costs', section: 'cloud', color: '#65a30d' },
 ];
 
+const SECTION_ICONS = { finance: FiTrendingUp, cloud: FiCloud, crm: FiUsers };
+
 function StoryCard({ blog, size }) {
-  const Icon = blog.section === 'cloud' ? FiCloud : FiTrendingUp;
+  const Icon = SECTION_ICONS[blog.section] ?? FiTrendingUp;
   return (
     <Link to={`/blog/${blog.slug}`} className={`hero__story hero__story--${size} hero__story--${blog.section}`}>
       <ArticleImage
@@ -59,29 +63,31 @@ export default function HeroSection() {
 
       <Container className="hero__inner">
         <div className="hero__main">
-          <p className="hero__eyebrow">The Finance &amp; Cloud Journal</p>
+          <p className="hero__eyebrow">The Finance, Cloud &amp; CRM Journal</p>
 
           <h1 className="hero__heading">
-            <span className="hero__line">Learn</span>{' '}
-            <span className="hero__word hero__word--finance">money.</span>
+            <span className="hero__line">Discover</span>{' '}
+            <span className="hero__word hero__word--finance">finance.</span>
             <br />
-            <span className="hero__line">Understand</span>{' '}
+            <span className="hero__line">Unlock </span>{' '}
             <span className="hero__line">the</span>{' '}
-            <span className="hero__word hero__word--cloud">cloud.</span>
+            <span className="hero__word hero__word--cloud">technology.</span>
           </h1>
 
           <p className="hero__subtitle">
-            Calm, clear guides for everyday money decisions — and for the digital services
-            that now hold, move and protect your money.
+            Explore financial knowledge, understand cloud technology, and discover the digital tools shaping modern business.
           </p>
 
           <div className="hero__actions">
             <Link to="/blog" className="hero__btn hero__btn--primary">
-              Start reading
-              <FiArrowRight aria-hidden="true" />
-            </Link>
-            <Link to={`/blog/${featured.slug}`} className="hero__btn hero__btn--ghost">
-              Editor’s pick
+              <svg viewBox="0 0 24 24" className="hero__btn-arrow hero__btn-arrow--in" aria-hidden="true">
+                <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z" />
+              </svg>
+              <span className="hero__btn-text">Start reading</span>
+              <span className="hero__btn-circle" aria-hidden="true" />
+              <svg viewBox="0 0 24 24" className="hero__btn-arrow hero__btn-arrow--out" aria-hidden="true">
+                <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z" />
+              </svg>
             </Link>
           </div>
         </div>

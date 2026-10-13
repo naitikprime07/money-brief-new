@@ -1,0 +1,134 @@
+/* Header trigger — quiet borderless icon, so only the theme toggle keeps a circle. */
+.header__search-btn {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  margin-right: 4px;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--color-muted);
+  font-size: 1.15rem;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.header__search-btn:hover {
+  color: var(--color-brand);
+}
+
+/* Full-screen search overlay */
+.search-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  overflow-y: auto;
+  padding: clamp(72px, 12vh, 140px) 20px 60px;
+  background: var(--color-bg);
+}
+
+.search-overlay__close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--color-border);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--color-ink);
+  font-size: 1.35rem;
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.search-overlay__close:hover {
+  color: var(--color-brand);
+  border-color: var(--color-brand);
+}
+
+.search-overlay__inner {
+  max-width: 640px;
+  margin-inline: auto;
+}
+
+.search-overlay__field {
+  position: relative;
+}
+
+.search-overlay__icon {
+  position: absolute;
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-muted);
+  pointer-events: none;
+}
+
+.search-overlay__input {
+  width: 100%;
+  padding: 16px 20px 16px 50px;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  background: var(--color-surface);
+  color: var(--color-ink);
+  font-size: 1.125rem;
+  font-family: inherit;
+  transition: border-color 0.15s ease;
+}
+
+.search-overlay__input::placeholder {
+  color: var(--color-muted);
+}
+
+.search-overlay__input:focus {
+  outline: none;
+  border-color: var(--color-brand);
+}
+
+/* Results */
+.search-overlay__results {
+  margin: 18px 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 4px;
+}
+
+.search-overlay__result {
+  display: block;
+  padding: 12px 16px;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: background 0.15s ease;
+}
+
+.search-overlay__result:hover {
+  background: var(--color-brand-soft);
+}
+
+.search-overlay__result-cat {
+  display: block;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.search-overlay__result-title {
+  display: block;
+  margin-top: 2px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-ink);
+}
+
+.search-overlay__empty {
+  margin-top: 18px;
+  font-size: 0.95rem;
+  color: var(--color-muted);
+}
