@@ -8,7 +8,7 @@ export default function Terms() {
     <>
       <SEO
         title="Terms & Conditions"
-        description={`The terms that apply when you read and use ${SITE.name}.`}
+        description={`The terms that apply when you read and use ${SITE.name}, a finance and cloud education site.`}
         path="/terms"
       />
 
@@ -26,12 +26,15 @@ export default function Terms() {
 
             <h2 id="educational-use">Educational use only</h2>
             <p>
-              All articles, guides and tools on the site are published for general information and education.
-              Nothing on the site is financial, investment, tax or legal advice, an offer, a solicitation, or
-              a recommendation to buy or sell any product. Nothing here is a promise or guarantee of any
-              investment return or financial outcome. Financial products carry risk, rules vary by country and
-              change over time, and past performance does not predict future results. Always consider your own
-              circumstances and, where appropriate, consult a qualified professional before acting.
+              All articles, guides and tools on the site — whether they cover personal finance or cloud
+              technology — are published for general information and education. Nothing on the site is
+              financial, investment, tax, legal, IT or security advice, an offer, a solicitation, or a
+              recommendation to buy or sell any product or service, or to adopt any particular platform,
+              provider or configuration. Nothing here is a promise or guarantee of any investment return,
+              financial outcome, uptime or data-protection result. Financial products carry risk and cloud
+              services carry their own trade-offs; rules, pricing and technology vary by country and vendor
+              and change over time, and past performance does not predict future results. Always consider your
+              own circumstances and, where appropriate, consult a qualified professional before acting.
             </p>
 
             <h2 id="copyright">Copyright and content ownership</h2>
@@ -48,8 +51,9 @@ export default function Terms() {
               Some article photographs are licensed from third-party stock libraries. Those images remain the
               copyright of their respective photographers and are <strong>not</strong> our work: they are not
               covered by the permission below, and re-uploading or reusing them elsewhere is not authorised by
-              us. Company, product, exchange and institution names mentioned in articles remain trademarks of
-              their owners — mentioning them is descriptive only and does not imply endorsement or affiliation.
+              us. Company, product, cloud-service, exchange and institution names mentioned in articles remain
+              trademarks of their owners — mentioning them is descriptive only and does not imply endorsement
+              or affiliation.
             </p>
 
             <h2 id="permitted-use">What you are welcome to do</h2>

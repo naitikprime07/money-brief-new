@@ -8,7 +8,7 @@ export default function Privacy() {
     <>
       <SEO
         title="Privacy Policy"
-        description={`How ${SITE.name} collects, uses and protects your information.`}
+        description={`How ${SITE.name}, a finance and cloud education site, collects, uses and protects your information.`}
         path="/privacy"
       />
 
@@ -20,9 +20,10 @@ export default function Privacy() {
 
           <div className="legal__body">
             <p>
-              This policy explains how {SITE.name} (“we”, “us”, “the site”) handles information when you
-              visit. Short version: we don’t ask you for personal accounts, we don’t sell data, and the only
-              tracking comes from advertising and basic analytics providers.
+              This policy explains how {SITE.name} (“we”, “us”, “the site”) — an educational resource covering
+              personal finance and cloud technology — handles information when you visit. Short version: we don’t
+              ask you for personal accounts, we don’t sell data, and the only tracking comes from advertising and
+              basic analytics providers.
             </p>
 
             <h2 id="information-we-collect">What is collected</h2>
@@ -73,10 +74,20 @@ export default function Privacy() {
               reader identities.
             </p>
 
+            <h2 id="hosting">Cloud hosting and service providers</h2>
+            <p>
+              Fittingly for a site that writes about the cloud, {SITE.name} runs on third-party cloud
+              infrastructure. The static site is built and served through cloud hosting and delivery
+              providers, and analytics and advertising are handled by cloud services. These providers process
+              limited technical data (such as IP addresses and request logs) on our behalf under their own
+              privacy terms. We do not hand them any personal information about you beyond what your browser
+              naturally sends when loading a page.
+            </p>
+
             <h2 id="children">Children’s privacy</h2>
             <p>
-              The site is a general-audience financial education resource and is not directed at children.
-              We do not knowingly collect personal information from anyone under 16.
+              The site is a general-audience financial and cloud technology education resource and is not
+              directed at children. We do not knowingly collect personal information from anyone under 16.
             </p>
 
             <h2 id="changes">Changes to this policy</h2>

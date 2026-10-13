@@ -4,6 +4,7 @@ import Container from '../components/Container/Container';
 import Footer from '../components/Footer/Footer';
 import Header from '../components/Header/Header';
 import ScrollToTop from '../components/ScrollToTop/ScrollToTop';
+import StickySideAd from '../components/StickySideAd/StickySideAd';
 
 /** Shared page frame: header, top ad, page content, footer. */
 export default function MainLayout() {
@@ -25,6 +26,8 @@ export default function MainLayout() {
       <main id="main">
         <Outlet />
       </main>
+
+      <StickySideAd />
 
       <Footer />
     </>

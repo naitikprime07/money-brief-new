@@ -1,0 +1,72 @@
+/* Bottom-right floating sticky ad with a scroll arrow. */
+.sticky-ad {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 90;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+  max-width: calc(100vw - 32px);
+}
+
+/* Outlined disc arrow that scrolls the page to bottom / back to top. */
+.sticky-ad__arrow {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--color-border);
+  border-radius: 50%;
+  background: var(--color-surface);
+  color: var(--color-brand);
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.sticky-ad__arrow:hover {
+  background: var(--color-brand-soft);
+  transform: translateY(-2px);
+}
+
+.sticky-ad__arrow:active {
+  transform: scale(0.94);
+}
+
+/* Clean line-glyph styling; the icon swaps between up/down states in the JSX. */
+.sticky-ad__icon {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* The ad card itself (reuses the AdSlot frame). */
+.sticky-ad .sticky-ad__box {
+  width: 320px;
+  padding: 8px 8px 4px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+}
+
+/* No "Advertisement" caption in the corner unit — just the arrow button + ad. */
+.sticky-ad .ad-slot__label {
+  display: none;
+}
+
+/* When no ad fills, AdSlot removes the frame — hide the empty card so only the
+   arrow button remains in the corner. */
+.sticky-ad .sticky-ad__box:not(:has(.ad-slot__frame)) {
+  display: none;
+}
+
+@media (max-width: 400px) {
+  .sticky-ad .sticky-ad__box {
+    width: min(300px, calc(100vw - 32px));
+  }
+}
